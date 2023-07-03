@@ -23,7 +23,7 @@ export default function Navigation({ navLinks }: IProps) {
                             " px-3 py-1 " +
                             (isActive
                                 ? 'text-yellow-400 font-semibold'
-                                : 'text-gray-500 hover:bg-yellow-200 hover:text-yellow-800 rounded-lg')}
+                                : 'text-gray-500 hover:bg-yellow-500 hover:text-yellow-800 rounded-lg')}
                         href={link.href}
                         key={link.name}
                     >

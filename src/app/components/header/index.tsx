@@ -1,9 +1,12 @@
+'use client';
+
 import Image from "next/image"
 import Navigation from "./navigation"
 import Btn from "./btn"
 
 import { Kanit } from 'next/font/google'
 import Icon, { BellSvg, GlobalSvg } from "@/app/components/icon"
+import { useState } from "react";
 
 const kanit = Kanit({
     subsets: ['vietnamese'],
@@ -21,10 +24,23 @@ const navLinks = [
     }
 ]
 
+type language = "Vi" | "En"
+
 export default function Header() {
+    const [config, setConfig] = useState({
+        lang: "Vi"
+    })
+
+    function handleLanguageChange() {
+        setConfig({
+            lang: (config.lang === "Vi") ? "En" : "Vi"
+        });
+        console.log("Cho")
+    }
+
 
     return (
-        <div className="bg-white p-4 w-full border-b-[1px] border-gray-200 shadow-md">
+        <div className="bg-[#ffffffd9] p-4 w-full border-b-[1px] backdrop-blur-sm border-gray-200 shadow-md sticky top-0 left-0">
             <div className={kanit.className + " flex container mx-auto justify-between "}>
                 {/* Left */}
                 <div className="lg:w-1/2 xl:w-1/3 flex items-center justify-between flex-none">
@@ -45,13 +61,12 @@ export default function Header() {
 
                 {/* Right */}
                 <div className={"w-full flex items-center justify-end flex-grow"}>
-                    <Btn>
-                        <Icon icon={GlobalSvg} stroke="#6b7280" />
-                        <span className={" ml-2 text-gray-500"}>Vi</span>
-                    </Btn>
-                    <Btn icon>
-                        <Icon icon={BellSvg} stroke="#6b7280" />
-                    </Btn>
+                    <Btn
+                        onClick={handleLanguageChange}
+                        icon={GlobalSvg}
+                        text={config.lang}
+                    />
+                    <Btn icon={BellSvg} />
                     <Btn text="Login" />
                     <Btn text="Sign up" border />
                 </div>
