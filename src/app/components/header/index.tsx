@@ -5,8 +5,9 @@ import Navigation from "./navigation"
 import Btn from "./btn"
 
 import { Kanit } from 'next/font/google'
-import Icon, { BellSvg, GlobalSvg } from "@/app/components/icon"
-import { useState } from "react";
+import { BellSvg, GlobalSvg } from "@/app/components/icon"
+import { useState, useEffect, useRef } from "react";
+import NotificationPanel from "./notification";
 
 const kanit = Kanit({
     subsets: ['vietnamese'],
@@ -27,6 +28,9 @@ const navLinks = [
 type language = "Vi" | "En"
 
 export default function Header() {
+
+    const ref = useRef<HTMLDivElement>(null);
+    const [showNotif, setShowNotif] = useState(false)
     const [config, setConfig] = useState({
         lang: "Vi"
     })
@@ -38,6 +42,23 @@ export default function Header() {
         console.log("Cho")
     }
 
+    function handleNotificationShow() {
+        setShowNotif(!showNotif);
+    }
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (showNotif && ref.current && !ref.current.contains(event.target as Node)) {
+                setShowNotif(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [ref])
 
     return (
         <div className="bg-[#ffffffd9] p-4 w-full border-b-[1px] backdrop-blur-sm border-gray-200 shadow-md sticky top-0 left-0">
@@ -66,7 +87,14 @@ export default function Header() {
                         icon={GlobalSvg}
                         text={config.lang}
                     />
-                    <Btn icon={BellSvg} />
+                    <div className="relative" ref={ref}>
+                        <Btn
+                            onClick={handleNotificationShow}
+                            icon={BellSvg}
+                            show={showNotif}
+                        />
+                        <NotificationPanel show={showNotif} />
+                    </div>
                     <Btn text="Login" />
                     <Btn text="Sign up" border />
                 </div>

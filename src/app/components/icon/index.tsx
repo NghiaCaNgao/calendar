@@ -1,10 +1,17 @@
 import GlobalSvg from "@/app/assets/globe1.svg";
 import BellSvg from "@/app/assets/bell.svg";
+import UpArrowSvg from "@/app/assets/arrowcircleup.svg";
+import Trash from "@/app/assets/trash1.svg";
+import Check from "@/app/assets/check.svg";
+
 import React from "react";
 
 export {
     GlobalSvg,
-    BellSvg
+    BellSvg,
+    UpArrowSvg,
+    Trash,
+    Check
 }
 
 interface IIcon extends React.ComponentPropsWithRef<"svg"> {
