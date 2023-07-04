@@ -6,7 +6,7 @@ import NotifItem from "./notif-item";
 interface IProps {
     show?: boolean;
 }
-
+// TODO: Create actions for remove read news
 export default function NotificationPanel(props: IProps) {
     return (
         <div

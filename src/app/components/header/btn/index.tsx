@@ -20,18 +20,24 @@ export default function Btn({ children, ...props }: PropsWithChildren<IProps>) {
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
             className={
-                "flex py-1 mx-2 rounded-lg text-gray-500 " +
+                "flex py-1 mx-2 rounded-lg " +
                 "transition-all " +
-                (props.show || hover ? "bg-yellow-400 text-black " : " ") +
-                (props.border ? "border-yellow-500 border-2 text-yellow-500 " : " ") +
+                (props.border ? "border-yellow-500 border-2 " : " ") +
+                (props.show || hover
+                    ? "bg-yellow-400 text-black "
+                    : (props.border ? "text-yellow-500 " : "text-gray-500 ")) +
                 (props.text ? "px-3" : "px-1")}>
-            {props.icon
-                ? <Icon icon={props.icon} stroke={(hover || props.show) ? "black" : "#6b7280"} strokeWidth={1.5} className="transition-all" />
-                : undefined}
-            {props.text
-                ? <span className={(props.icon ? "ml-2" : "")}>{props.text}</span>
-                : undefined}
+            {
+                props.icon
+                    ? <Icon icon={props.icon} stroke={(hover || props.show) ? "black" : "#6b7280"} strokeWidth={1.5} className="transition-all" />
+                    : undefined
+            }
+            {
+                props.text
+                    ? <span className={(props.icon ? "ml-2" : "")}>{props.text}</span>
+                    : undefined
+            }
             {children}
-        </button>
+        </button >
     )
 }
