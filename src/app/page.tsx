@@ -6,6 +6,7 @@ import "animate.css";
 import { Kanit } from 'next/font/google'
 import { useState } from "react";
 import InputDigitSeries from "./components/input/input-series-digit";
+import InputSuggest from "./components/input/input-suggest";
 
 const kanit = Kanit({
   subsets: ['vietnamese'],
@@ -16,8 +17,6 @@ export default function Home() {
   const [studentID, setStudentID] = useState("");
   function handleInputChange(value: string) {
     setStudentID(value);
-    console.log(value);
-    
   }
 
   return (
@@ -34,11 +33,25 @@ export default function Home() {
 
           <div className="p-5 rounded-xl border-dashed border-yellow-400 border-2 w-full mt-14 bg-yellow-50 flex flex-col items-center">
             <p className="text-center text-gray-700">Insert your student ID to start</p>
-            <div className="flex mt-5 p-3">
+            {/* <div className="flex mt-5 p-3">
               <InputDigitSeries num={8} onChange={handleInputChange} />
+            </div> */}
+
+            <div className="my-5 p-3 bg-white rounded-xl shadow-xl w-2/3">
+              <InputSuggest />
             </div>
+
             <button className="cursor-pointer outline-none hover:underline text-yellow-600">Try other ways</button>
-            <button className="bg-yellow-100 text-gray-400 hover:bg-yellow-400 hover:text-black transition-all w-36 py-2 rounded-lg shadow-lg border-[1px] outline-none border-yellow-500 mt-5">Continue</button>
+
+            <button className={
+              "transition-all w-36 py-2 rounded-lg border-[1px] outline-none " +
+              "border-yellow-500 mt-5 " +
+              (studentID.replace(" ", "").length === 8
+                ? "bg-yellow-400 text-black font-normal hover:shadow-xl "
+                : "bg-yellow-100 text-gray-500 font-light ")
+            }>
+              Continue
+            </button>
           </div>
         </div>
       </div>
