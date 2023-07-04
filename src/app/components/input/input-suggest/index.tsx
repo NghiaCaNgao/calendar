@@ -44,9 +44,13 @@ export default function InputSuggest(props: IProps) {
 
     function applyChange(value: string) {
         const _value = value;
+        // do nghia ->.*do.*nghia.*
+        const _regexp = new RegExp((" " + _value + " ").replace(/\s{2,}/g, " ").split(" ").join(".*"));
+        
         const _view = data.filter((item: IReceivedStudentData) => {
-            return (item.studentNameSearch.lastIndexOf(_value.trim()) >= 0 ||
-                item.studentID.lastIndexOf(_value.trim()) >= 0) &&
+            return (
+                item.studentID.lastIndexOf(_value.trim()) >= 0 ||
+                item.studentNameSearch.match(_regexp)) &&
                 _value.trim() !== ""
         }).slice(0, 3)
 
