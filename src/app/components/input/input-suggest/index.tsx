@@ -31,8 +31,13 @@ const data: IReceivedStudentData[] = [
     },
 ]
 
+interface IProps {
+    num: number;
+    onChange?: (value: string) => void;
+}
 
-export default function InputSuggest() {
+export default function InputSuggest(props: IProps) {
+    const max_name_length = 50;
     const [focus, setFocus] = useState(false);
     const [value, setValue] = useState("");
     const [view, setView] = useState<IReceivedStudentData[]>([])
@@ -44,6 +49,10 @@ export default function InputSuggest() {
                 item.studentID.lastIndexOf(_value.trim()) >= 0) &&
                 _value.trim() !== ""
         }).slice(0, 3)
+
+        if (_value.match(/^(\s*|\d+)$/)) {
+            props.onChange && props.onChange(_value);
+        }
 
         setView(_view);
         setValue(_value);
@@ -63,7 +72,7 @@ export default function InputSuggest() {
                 " rounded-lg p-2 px-3 border-2 transition-all " +
                 (focus
                     ? "bg-yellow-300 border-yellow-600 "
-                    : "bg-yellow-100 border-yellow-200 ")
+                    : "bg-yellow-100 border-yellow-300 ")
 
             }>
                 <input
@@ -72,11 +81,14 @@ export default function InputSuggest() {
                     onChange={handleInputChange}
                     onFocus={() => setFocus(true)}
                     onBlur={() => setFocus(false)}
-                    maxLength={value.match(/\d+/) ? 8 : 50}
+                    maxLength={value.match(/\d+/) ? props.num : max_name_length}
                     className="bg-transparent outline-none w-full" />
             </div>
 
-            <div className=" w-full mt-2 px-2">
+            <div
+                className={
+                    " w-full mt-2 px-2 transition-all overflow-hidden ease-in-out "
+                }>
                 {view.length > 0
                     ? <p className="text-green-400">
                         <span>Matched </span>
