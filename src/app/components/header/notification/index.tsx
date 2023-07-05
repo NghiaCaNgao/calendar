@@ -1,5 +1,3 @@
-'use client';
-
 import Icon, { Check, Trash } from "@/app/components/icon";
 import NotifItem from "./notif-item";
 

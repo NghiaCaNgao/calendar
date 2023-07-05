@@ -1,27 +1,11 @@
-"use client"
-
 import Header from "@/app/components/header"
-import "animate.css";
 
-import { Kanit } from 'next/font/google'
 import FormInputStudentID from "./components/form-input-studentID";
-import { InfoCircle } from "./components/icon";
-import Btn from "@/app/components/btn";
 import Stage from "./components/stage";
-import { useState } from "react";
-
-
-const kanit = Kanit({
-  subsets: ['vietnamese'],
-  weight: ["100", "200", "300", "400", "500", "600"],
-})
-
-
 
 export default function Home() {
   return (
     <main className={
-      kanit.className +
       ' min-h-screen bg-white bg-bg-image flex flex-col w-screen overflow-hidden'}>
       <Header />
 
@@ -36,9 +20,15 @@ export default function Home() {
             <Stage size="small" />
           </div>
 
-          <div className="mt-1">
+          <div className="mt-1 w-full">
             <FormInputStudentID />
           </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-3 w-full flex justify-center">
+        <div className="bg-white p-1 px-2 rounded-full w-fit border-[1px] border-gray-200">
+          <p><a href="https://github.com/NghiaCaNgao" className="text-rose-500 hover:underline">Nghiacangao </a> makes with love</p>
         </div>
       </div>
     </main>

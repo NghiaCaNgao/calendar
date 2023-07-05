@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import InputDigitSeries from "@/app/components/input/input-series-digit";
 import InputSuggest from "@/app/components/input/input-suggest";

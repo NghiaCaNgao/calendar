@@ -1,21 +1,22 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import { Kanit } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+import './globals.css'
+import "animate.css";
 
 export const metadata = {
   title: 'Calendar Maker',
   description: 'Auto generate calendar for UET students',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+const kanit = Kanit({
+  subsets: ['vietnamese'],
+  weight: ["100", "200", "300", "400", "500", "600"],
+})
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={kanit.className}>{children}</body>
     </html>
   )
 }

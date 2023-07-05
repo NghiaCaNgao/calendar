@@ -1,3 +1,5 @@
+"use client"
+
 import { Flag1, Gift, Like, Edit4 } from "@/app/components/icon"
 import StageItem, { IStageData } from "./stage-item";
 
