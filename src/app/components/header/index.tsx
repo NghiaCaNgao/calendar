@@ -2,17 +2,11 @@
 
 import Image from "next/image"
 import Navigation from "./navigation"
-import Btn from "./btn"
-
-import { Kanit } from 'next/font/google'
-import { BellSvg, GlobalSvg } from "@/app/components/icon"
-import { useState, useEffect, useRef } from "react";
+import Btn from "@/app/components/btn"
 import NotificationPanel from "./notification";
 
-const kanit = Kanit({
-    subsets: ['vietnamese'],
-    weight: ["100", "200", "300", "400", "500", "600"],
-})
+import { BellSvg, GlobalSvg } from "@/app/components/icon"
+import { useState, useEffect, useRef } from "react";
 
 const navLinks = [
     {
@@ -32,7 +26,7 @@ export default function Header() {
     const ref = useRef<HTMLDivElement>(null);
     const [showNotif, setShowNotif] = useState(false)
     const [config, setConfig] = useState({
-        lang: "Vi"
+        lang: "En"
     })
 
     function handleLanguageChange() {
@@ -62,7 +56,7 @@ export default function Header() {
 
     return (
         <div className="bg-[#ffffffd9] p-4 w-full border-b-[1px] backdrop-blur-sm border-gray-200 shadow-md sticky top-0 left-0">
-            <div className={kanit.className + " flex container mx-auto justify-between "}>
+            <div className={" flex container mx-auto justify-between "}>
                 {/* Left */}
                 <div className="lg:w-1/2 xl:w-1/3 flex items-center justify-between flex-none">
                     {/* Logo */}
