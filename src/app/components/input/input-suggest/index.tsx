@@ -40,7 +40,7 @@ export default function InputSuggest(props: IProps) {
     const max_name_length = 50;
     const [focus, setFocus] = useState(false);
     const [value, setValue] = useState("");
-    const [view, setView] = useState<IReceivedStudentData[]>([])
+    const [view, setView] = useState<IReceivedStudentData[]>([])    
 
     function applyChange(value: string) {
         const _value = value;

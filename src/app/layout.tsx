@@ -1,3 +1,5 @@
+import ConfigurationProvider from "@/app/hooks/configuration";
+import StudentProvider from  "@/app/hooks/student"
 import { Kanit } from 'next/font/google'
 
 import './globals.css'
@@ -16,7 +18,13 @@ const kanit = Kanit({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={kanit.className}>{children}</body>
+      <body className={kanit.className}>
+        <ConfigurationProvider>
+          <StudentProvider>
+            {children}
+          </StudentProvider>
+        </ConfigurationProvider>
+      </body>
     </html>
   )
 }

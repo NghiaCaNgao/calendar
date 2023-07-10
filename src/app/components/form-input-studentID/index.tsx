@@ -1,14 +1,31 @@
 "use client"
 
-import { useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import InputDigitSeries from "@/app/components/input/input-series-digit";
 import InputSuggest from "@/app/components/input/input-suggest";
+import { IStudentContextType, StudentContext } from "@/app/hooks/student";
+import axios from "axios";
 
 type InputType = "suggest" | "digits";
 
 export default function FormInputStudentID() {
     const [studentID, setStudentID] = useState("");
     const [inputType, setInputType] = useState<InputType>("digits")
+    const { config, setConfig } = useContext(StudentContext) as IStudentContextType;
+
+    async function handleInputSubmit() {
+        const res = await axios.get(`/api/student?id=${studentID}`);
+        const data = res.data;
+
+        if (data) {
+            setConfig({
+                studentId: data.studentID,
+                DOB: data.dateBirth,
+                official_class: data.officialClass,
+                studentName: data.studentName
+            });
+        }
+    }
 
     function handleInputChange(value: string) {
         setStudentID(value);
@@ -39,13 +56,15 @@ export default function FormInputStudentID() {
                 Try another way
             </button>
 
-            <button className={
-                "transition-all w-36 py-2 rounded-lg border-[1px] outline-none " +
-                "border-yellow-500 mt-5 " +
-                (studentID.replace(" ", "").length === 8
-                    ? "bg-yellow-400 text-black font-normal hover:shadow-xl hover:-translate-y-1 "
-                    : "bg-yellow-100 text-gray-500 font-light ")
-            }>
+            <button
+                onClick={handleInputSubmit}
+                className={
+                    "transition-all w-36 py-2 rounded-lg border-[1px] outline-none " +
+                    "border-yellow-500 mt-5 " +
+                    (studentID.replace(" ", "").length === 8
+                        ? "bg-yellow-400 text-black font-normal hover:shadow-xl hover:-translate-y-1 "
+                        : "bg-yellow-100 text-gray-500 font-light ")
+                }>
                 Continue
             </button>
         </div>

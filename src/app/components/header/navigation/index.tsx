@@ -1,14 +1,23 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
-interface IProps {
-    navLinks: {
-        href: string;
-        name: string;
-    }[];
+interface INavLink {
+    href: string;
+    name: string;
 }
 
-export default function Navigation({ navLinks }: IProps) {
+const navLinks: INavLink[] = [
+    {
+        href: "/",
+        name: "Home"
+    },
+    {
+        href: "/usage",
+        name: "Usage"
+    }
+]
+
+export default function Navigation() {
     const pathname = usePathname()
     return (
         <>

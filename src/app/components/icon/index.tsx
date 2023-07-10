@@ -16,7 +16,7 @@ export {
     Check, InfoCircle, Edit4, Flag1, Gift, Like
 }
 
-interface IIcon extends React.ComponentPropsWithRef<"svg"> {
+export interface IIcon extends React.ComponentPropsWithRef<"svg"> {
     icon: string;
 }
 

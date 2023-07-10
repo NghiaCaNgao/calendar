@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Tippy from "@tippyjs/react"
-import Icon from "@/app/components/icon";
+import Icon, { IIcon } from "@/app/components/icon";
 
 export interface IStageData {
     name: string;
@@ -16,7 +16,6 @@ interface IProps {
 
 export default function StageItem(props: IProps) {
     const [hover, setHover] = useState(false);
-
     return (
         <Tippy
             placement="bottom"
@@ -45,6 +44,7 @@ export default function StageItem(props: IProps) {
                     stroke={
                         (hover || props.selected ? "black" : "#6b7280")}
                 />
+
             </div>
         </Tippy>
     )

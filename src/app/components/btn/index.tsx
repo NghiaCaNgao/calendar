@@ -37,7 +37,11 @@ export default function Btn({ children, ...props }: PropsWithChildren<IProps>) {
                     (props.text ? "px-3" : "px-1")}>
                 {
                     props.icon
-                        ? <Icon icon={props.icon} stroke={(hover || props.show) ? "black" : "#6b7280"} strokeWidth={1.5} className="transition-all" />
+                        ? <Icon
+                            icon={props.icon}
+                            stroke={(hover || props.show) ? "black" : "#6b7280"}
+                            strokeWidth={1.5}
+                            className="transition-all" />
                         : undefined
                 }
                 {
