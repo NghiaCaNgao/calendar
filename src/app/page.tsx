@@ -1,10 +1,14 @@
+"use client"
+
 import Header from "@/app/components/header"
 
 import FormInputStudentID from "./components/form-input-studentID";
 import Stage from "./components/stage";
 import StudentCard from "./components/student-card";
+import { useState } from "react";
 
 export default function Home() {
+  const [show, setShow] = useState(false);
   return (
     <main className={'min-h-screen bg-white bg-bg-image  w-screen '}>
       <div className="flex flex-col overflow-hidden w-full h-full">
@@ -22,7 +26,7 @@ export default function Home() {
             </div>
 
             <div className="mt-1 w-full">
-              <FormInputStudentID />
+              <FormInputStudentID onDone={() => setShow(true)} />
             </div>
           </div>
         </div>
@@ -36,9 +40,13 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* <div className="absolute top-0 left-0 w-full h-full z-30 bg-[#E3B4499B] backdrop-blur-xl flex justify-center items-center">
-        <StudentCard />
-      </div> */}
+
+      {show
+        ? <div className="absolute top-0 left-0 w-full h-full z-30 bg-[#E3B4499B] backdrop-blur-xl flex justify-center items-center">
+          <StudentCard onCancel={() => setShow(false)} />
+        </div>
+        : undefined}
+      { }
     </main>
   )
 }

@@ -1,3 +1,5 @@
+import {MouseEvent} from "react";
+
 interface IProps {
     title: string,
     level?: "primary" | "secondary";
@@ -8,6 +10,7 @@ export default function BtnNormal({ level = "primary", ...props }: IProps) {
 
     return (
         <button
+            onClick={props.onClick}
             className={
                 "transition-all px-2 py-1 rounded-lg border-[1px] outline-none " +
                 (level === "primary"

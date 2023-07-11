@@ -6,14 +6,14 @@ export interface IContext {
     studentId: string,
     studentName: string,
     DOB: string,
-    official_class: string
+    officialClass: string
 
 }
 
 const DefaultContextValue: IContext = {
     studentId: "",
     DOB: "",
-    official_class: "",
+    officialClass: "",
     studentName: ""
 }
 
